@@ -1,0 +1,54 @@
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Tech Blog</title>
+    <link
+      href="//maxcdn.bootstrapcdn.com/bootstrap/4.1.1/css/bootstrap.min.css"
+      rel="stylesheet"
+      id="bootstrap-css"
+    />
+    <script
+      src="//maxcdn.bootstrapcdn.com/bootstrap/4.1.1/js/bootstrap.min.js"
+    ></script>
+    <script
+      src="//cdnjs.cloudflare.com/ajax/libs/jquery/3.2.1/jquery.min.js"
+    ></script>
+    <link
+      rel="stylesheet"
+      href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.11.2/css/all.min.css"
+    />
+    <link rel="stylesheet" href="/css/style.css" />
+  </head>
+
+  <body>
+    <header>
+      <h2 class="webHeading">Tech Blog</h2>
+      <nav>
+        <ul>
+          <li>
+            <a href="#AboutMe"><h1>Home</h1></a>
+          </li>
+          <li>
+            <a href="#Projects"><h1>Dashboard</h1></a>
+          </li>
+          {{#unless loggedIn}}
+            <li>
+              <a href="#"><h1>Login</h1></a>
+            </li>
+          {{/unless}}
+          {{#if loggedIn}}
+            <li>
+              <a href="#"><h1>Logout</h1></a>
+            </li>
+          {{/if}}
+        </ul>
+      </nav>
+    </header>
+    <main>
+      <!-- Render the sub layout -->
+      {{{body}}}<!---->
+    </main>
+    <footer></footer>
+  </body>
+</html>

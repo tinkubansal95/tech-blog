@@ -1,0 +1,121 @@
+header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  color: rgb(214, 223, 224);
+  flex-wrap: wrap;
+  background-color: #000407;
+  margin-top: 2px;
+  padding-top: 3%;
+  padding: 2%;
+}
+
+h1 {
+  font-size: 150%;
+}
+
+h3 {
+  text-decoration: underline;
+  font-size: 150%;
+}
+
+h2 {
+  font-size: 250%;
+}
+
+nav ul {
+  display: flex;
+  justify-content: space-between;
+  list-style: none;
+}
+
+nav a {
+  color: rgb(214, 223, 224);
+  font-weight: bold;
+  text-decoration: none;
+}
+
+nav li {
+  margin-right: 50px;
+}
+
+nav a:hover {
+  color: #fff;
+}
+
+main {
+  display: block;
+  flex: 1 1 0;
+  max-width: 96%;
+  margin: 2% auto;
+}
+
+p {
+  font-size: 150%;
+  text-align: justify;
+}
+
+form p {
+  text-align: center;
+}
+
+.text-center {
+  text-align: center;
+}
+
+.text-right {
+  text-align: right;
+}
+
+body {
+  margin: 0;
+  padding: 0;
+  background-color: #ffffff;
+  height: 100vh;
+}
+#login .container #login-row #login-column #login-box {
+  margin-top: 50px;
+  max-width: 600px;
+  height: 320px;
+  border: 1px solid #9c9c9c;
+  background-color: #eaeaea;
+}
+#login .container #login-row #login-column #login-box #login-form {
+  padding: 20px;
+}
+#login
+  .container
+  #login-row
+  #login-column
+  #login-box
+  #login-form
+  #register-link {
+  margin-top: -85px;
+}
+
+@media screen and (max-width: 768px) {
+  header {
+    flex-direction: column;
+  }
+  .projects {
+    flex-direction: column;
+  }
+  .card {
+    max-height: 260px;
+  }
+}
+
+@media screen and (max-width: 576px) {
+  header {
+    flex-direction: column;
+  }
+  nav ul {
+    flex-direction: column;
+  }
+  .projects {
+    flex-direction: column;
+  }
+  .card {
+    max-height: 260px;
+  }
+}
