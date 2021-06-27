@@ -39,7 +39,7 @@
           {{/unless}}
           {{#if loggedIn}}
             <li>
-              <a href="/logout"><h1>Logout</h1></a>
+              <a href="#" id="logoutBtn"><h1>Logout</h1></a>
             </li>
           {{/if}}
         </ul>
@@ -50,5 +50,9 @@
       {{{body}}}<!---->
     </main>
     <footer></footer>
+    <!-- Render script for logged in users only -->
+    {{#if loggedIn}}
+      <script src="/js/logout.js"></script>
+    {{/if}}
   </body>
 </html>

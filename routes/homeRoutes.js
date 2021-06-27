@@ -1,9 +1,10 @@
 const router = require("express").Router();
 const withAuth = require("../utils/auth");
 
-router.get("/", async (req, res) => {
+router.get("/", withAuth, async (req, res) => {
   try {
-    res.render("dashboard");
+    const loggedIn = req.session.loggedIn;
+    res.render("dashboard", { loggedIn });
   } catch (err) {
     res.status(500).json(err);
   }
@@ -11,7 +12,8 @@ router.get("/", async (req, res) => {
 
 router.get("/home", async (req, res) => {
   try {
-    res.render("homepage");
+    const loggedIn = req.session.loggedIn;
+    res.render("homepage", { loggedIn });
   } catch (err) {
     res.status(500).json(err);
   }
@@ -27,7 +29,7 @@ router.get("/login", async (req, res) => {
 
 router.get("/signUp", async (req, res) => {
   try {
-    res.render("signup");
+    res.render("signUp");
   } catch (err) {
     res.status(500).json(err);
   }

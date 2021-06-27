@@ -10,10 +10,11 @@ const handleSubmit = async (e) => {
 
   const errors = {};
   if (!usernameVal) {
-    errors.username = "Invalid email";
+    errors.username = "Invalid username";
   }
-  if (!passwordVal) {
-    errors.password = "Invalid password";
+
+  if (passwordVal < 8) {
+    errors.passwordLength = "Password should be atleast 8 characters long!";
   }
 
   if (errors.username || errors.password) {
@@ -23,8 +24,9 @@ const handleSubmit = async (e) => {
       })
       .join("")}
         `);
+    return;
   } else {
-    const res = await fetch("/api/user/login", {
+    const res = await fetch("/api/user/register", {
       method: "POST",
       headers: {
         Accept: "application/json",
