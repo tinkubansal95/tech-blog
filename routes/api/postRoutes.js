@@ -27,22 +27,38 @@ router.post("/", withAuth, async (req, res) => {
 });
 
 // update post
-router.put("/:id", withAuth, async (req, res) => {
+router.put("/update", withAuth, async (req, res) => {
   try {
+    const { id, title, content } = req.body;
+
+    const postCheck = await Post.findOne({
+      where: { id, authorId: req.session.user_id },
+    });
+
+    // check if user have access to this post
+    if (!postCheck) {
+      res.status(404).json({
+        message:
+          "No post found with this id or you don't have access to this post!",
+      });
+      return;
+    }
+
     const postData = await Post.update(
-      {
-        ...req.body,
-      },
+      { title, content },
       {
         where: {
-          id: req.params.id,
+          id,
           authorId: req.session.user_id,
         },
       }
     );
 
     if (!postData) {
-      res.status(404).json({ message: "No post found with this id!" });
+      res.status(404).json({
+        message:
+          "No post found with this id or you don't have access to this post!",
+      });
       return;
     }
 
@@ -53,17 +69,21 @@ router.put("/:id", withAuth, async (req, res) => {
 });
 
 //delete post
-router.delete("/:id", withAuth, async (req, res) => {
+router.delete("/delete", withAuth, async (req, res) => {
   try {
+    const { id } = req.body;
     const postData = await Post.destroy({
       where: {
-        id: req.params.id,
+        id,
         authorId: req.session.user_id,
       },
     });
 
     if (!postData) {
-      res.status(404).json({ message: "No post found with this id!" });
+      res.status(404).json({
+        message:
+          "No post found with this id or you don't have access to this post!",
+      });
       return;
     }
 

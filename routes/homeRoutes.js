@@ -8,7 +8,7 @@ router.get("/dashboard", withAuth, async (req, res) => {
   try {
     const loggedIn = req.session.loggedIn;
     const allPosts = await Post.findAll({
-      attributes: ["title", "content", "publishedAt"],
+      attributes: ["id", "title", "content", "publishedAt"],
       where: { authorId: req.session.user_id },
       include: {
         model: User,
@@ -18,6 +18,7 @@ router.get("/dashboard", withAuth, async (req, res) => {
     const posts = allPosts.map((post) => ({
       ...post.get({ plain: true }),
       publishedAt: moment.parseZone(post.publishedAt).format("D/MM/YYYY"),
+      link: `updatePost/${post.id}`,
     }));
     res.render("dashboard", { loggedIn, posts });
   } catch (err) {
@@ -51,6 +52,22 @@ router.get("/createPost", withAuth, async (req, res) => {
     const loggedIn = req.session.loggedIn;
     res.render("createPost", { loggedIn });
   } catch (err) {
+    res.status(500).json(err);
+  }
+});
+
+router.get("/updatePost/:id", withAuth, async (req, res) => {
+  try {
+    const postData = await Post.findByPk(req.params.id);
+    if (!postData) {
+      res.status(404).json({ message: "No post with this id!" });
+      return;
+    }
+    const post = postData.get({ plain: true });
+    const loggedIn = req.session.loggedIn;
+    res.render("updatePost", { loggedIn, post });
+  } catch (err) {
+    console.log(err);
     res.status(500).json(err);
   }
 });

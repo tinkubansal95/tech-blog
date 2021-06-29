@@ -1,0 +1,46 @@
+<div class="container" id="createPostContainer">
+  <form>
+    <h3 class="text-center mt-3">Update Post</h3>
+    <div class="form-group">
+      <label for="title" class="mt-2 px-3">Title</label>
+      <div class="px-2">
+        <input
+          type="text"
+          class="form-control"
+          id="title"
+          value={{post.title}}
+        />
+      </div>
+    </div>
+    <div class="form-group">
+      <label for="content" class="px-3">Content</label>
+      <div class="px-2">
+        <textarea
+          class="form-control"
+          id="content"
+          rows="4"
+        >{{post.content}}</textarea>
+      </div>
+    </div>
+    <div class="form-group">
+      <div class="col text-center">
+        <div class="col text-center">
+          <button
+            type="button"
+            class="btn btn-dark mt-4"
+            id="updatePost"
+            data-post={{post.id}}
+          >Update</button>
+          <button
+            type="button"
+            class="btn btn-dark mt-4"
+            id="deletePost"
+            data-post={{post.id}}
+          >Delete</button>
+        </div>
+      </div>
+    </div>
+  </form>
+</div>
+
+<script src="/js/updatePost.js"></script>
