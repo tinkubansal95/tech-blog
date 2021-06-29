@@ -1,23 +1,23 @@
-const username = $("#username");
-const password = $("#password");
+const title = $("#title");
+const content = $("#content");
 const form = $("form");
 
 const handleSubmit = async (e) => {
   e.preventDefault();
 
-  const usernameVal = username.val().trim();
-  const passwordVal = password.val().trim();
+  const titleVal = title.val().trim();
+  const contentVal = content.val().trim();
 
   const errors = {};
-  if (!usernameVal) {
-    errors.username = "Invalid username";
+  if (!titleVal) {
+    errors.title = "Title can't be empty!";
   }
 
-  if (passwordVal < 8) {
-    errors.password = "Password should be atleast 8 characters long!";
+  if (!contentVal) {
+    errors.content = "Content can't be empty!";
   }
 
-  if (errors.username || errors.password) {
+  if (errors.title || errors.content) {
     alert(`${Object.keys(errors)
       .map((key) => {
         return `${errors[key]}\r`;
@@ -26,16 +26,16 @@ const handleSubmit = async (e) => {
         `);
     return;
   } else {
-    const res = await fetch("/api/user/register", {
+    const res = await fetch("/api/post", {
       method: "POST",
       headers: {
         Accept: "application/json",
         "Content-Type": "application/json",
       },
-      body: JSON.stringify({ username: usernameVal, password: passwordVal }),
+      body: JSON.stringify({ title: titleVal, content: contentVal }),
     });
     if (res.ok) {
-      window.location.href = "/";
+      window.location.href = "/dashboard";
       return;
     }
 
