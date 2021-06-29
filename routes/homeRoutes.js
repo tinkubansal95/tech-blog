@@ -1,43 +1,56 @@
 const router = require("express").Router();
-const Post = require("../models/Post");
-const User = require("../models/User");
+const { Post, User } = require("../models");
+
 const withAuth = require("../utils/auth");
 var moment = require("moment");
 
-router.get("/", withAuth, async (req, res) => {
+router.get("/dashboard", withAuth, async (req, res) => {
   try {
     const loggedIn = req.session.loggedIn;
-    const userPosts = await Post.findAll({
-      where: { author_id: req.session.user_id },
+    const allPosts = await Post.findAll({
+      attributes: ["title", "content", "publishedAt"],
+      where: { authorId: req.session.user_id },
+      include: {
+        model: User,
+        attributes: ["username"],
+      },
     });
-    const posts = userPosts.map((post) => ({
+    const posts = allPosts.map((post) => ({
       ...post.get({ plain: true }),
-      author: "abc",
       publishedAt: moment.parseZone(post.publishedAt).format("D/MM/YYYY"),
     }));
-    console.log(posts);
     res.render("dashboard", { loggedIn, posts });
   } catch (err) {
     res.status(500).json(err);
   }
 });
 
-router.get("/home", async (req, res) => {
+router.get("/", async (req, res) => {
   try {
     const loggedIn = req.session.loggedIn;
     const allPosts = await Post.findAll({
-      include: [{ model: User }],
+      attributes: ["title", "content", "publishedAt"],
+      include: {
+        model: User,
+        attributes: ["username"],
+      },
     });
-    /*   const posts = allPosts.map((post) => ({
+    const posts = allPosts.map((post) => ({
       ...post.get({ plain: true }),
-      author: "abc",
       publishedAt: moment.parseZone(post.publishedAt).format("D/MM/YYYY"),
-    }));*/
-    // console.log(await find_author(1));
-    console.log(allPosts);
-    res.render("homepage", { loggedIn });
+    }));
+    res.render("homepage", { loggedIn, posts });
   } catch (err) {
     console.log(err);
+    res.status(500).json(err);
+  }
+});
+
+router.get("/createPost", withAuth, async (req, res) => {
+  try {
+    const loggedIn = req.session.loggedIn;
+    res.render("createPost", { loggedIn });
+  } catch (err) {
     res.status(500).json(err);
   }
 });

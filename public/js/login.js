@@ -33,7 +33,7 @@ const handleSubmit = async (e) => {
       body: JSON.stringify({ username: usernameVal, password: passwordVal }),
     });
     if (res.ok) {
-      window.location.href = "/home";
+      window.location.href = "/";
       return;
     }
 

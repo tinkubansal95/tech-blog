@@ -3,23 +3,15 @@ const User = require("./User");
 const Post = require("./Post");
 const Comment = require("./Comment");
 
-Post.hasOne(Usedsdsdr, {
+//user to post
+Post.belongsTo(User, {
   foreignKey: "authorId",
 });
-User.belongsTo(Post, {
+// User have many Posts
+User.hasMany(Post, {
   foreignKey: "authorId",
+  onDelete: "CASCADE",
 });
-
-// user to post
-// Post.belongsTo(User, {
-//   foreignKey: "authorId",
-// });
-
-// // User have many Posts
-// User.hasMany(Post, {
-//   foreignKey: "authorId",
-//   onDelete: "CASCADE",
-// });
 
 // // user to comment
 // Comment.belongsTo(User, {

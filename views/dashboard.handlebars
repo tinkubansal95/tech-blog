@@ -3,9 +3,7 @@
     <a href="#" class="list-group-item list-group-item-action">
       <div class="d-flex w-100 justify-content-between">
         <h4 class="mb-1">{{post.title}}</h4>
-        <small class="text-muted">Posted by
-          {{post.author}}
-          on
+        <small class="text-muted">
           {{post.publishedAt}}</small>
       </div>
       <p class="mb-1">{{post.content}}</p>
@@ -16,7 +14,9 @@
 <div class="container">
   <div class="row">
     <div class="col text-center">
-      <button type="button" class="btn btn-dark btn-lg mt-4">+ Add New Post</button>
+      <button type="button" class="btn btn-dark btn-lg mt-4" id="createPost"><a
+          href="/createPost"
+        >+ Add New Post</a></button>
     </div>
   </div>
 </div>
