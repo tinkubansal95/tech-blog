@@ -124,9 +124,9 @@ router.get("/login", (req, res) => {
   }
 });
 
-router.get("/signUp", (req, res) => {
+router.get("/signup", (req, res) => {
   try {
-    res.render("login");
+    res.render("signup");
   } catch (err) {
     res.status(500).json(err);
   }
