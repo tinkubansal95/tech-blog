@@ -116,7 +116,7 @@ router.get("/postComment/:id", withAuth, async (req, res) => {
   }
 });
 
-router.get("/login", async (req, res) => {
+router.get("/login", (req, res) => {
   try {
     res.render("login");
   } catch (err) {
@@ -124,9 +124,9 @@ router.get("/login", async (req, res) => {
   }
 });
 
-router.get("/signUp", async (req, res) => {
+router.get("/signUp", (req, res) => {
   try {
-    res.render("signUp");
+    res.render("login");
   } catch (err) {
     res.status(500).json(err);
   }
