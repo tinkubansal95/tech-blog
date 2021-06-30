@@ -10,7 +10,7 @@ const handleSubmit = async (e) => {
 
   const errors = {};
   if (!usernameVal) {
-    errors.username = "Invalid email";
+    errors.username = "Invalid username";
   }
   if (!passwordVal) {
     errors.password = "Invalid password";
