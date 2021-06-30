@@ -24,7 +24,7 @@ const handleSubmit = async (e) => {
       .join("")}
         `);
   } else {
-    const res = await fetch("/api/user/login", {
+    const res = await fetch("/api/user/register", {
       method: "POST",
       headers: {
         Accept: "application/json",
