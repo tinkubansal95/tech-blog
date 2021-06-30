@@ -47,8 +47,7 @@
       </nav>
     </header>
     <main>
-      <!-- Render the sub layout -->
-      {{{body}}}<!---->
+      {{{body}}}
     </main>
     <footer></footer>
     <script
@@ -57,7 +56,6 @@
     <script
       src="https://cdnjs.cloudflare.com/ajax/libs/moment.js/2.24.0/moment.min.js"
     ></script>
-    <!-- Render script for logged in users only -->
     {{#if loggedIn}}
       <script src="/js/logout.js"></script>
     {{/if}}
