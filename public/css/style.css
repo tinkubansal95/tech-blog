@@ -112,12 +112,6 @@ body {
   header {
     flex-direction: column;
   }
-  .projects {
-    flex-direction: column;
-  }
-  .card {
-    max-height: 260px;
-  }
 }
 
 @media screen and (max-width: 576px) {
@@ -126,11 +120,5 @@ body {
   }
   nav ul {
     flex-direction: column;
-  }
-  .projects {
-    flex-direction: column;
-  }
-  .card {
-    max-height: 260px;
   }
 }
