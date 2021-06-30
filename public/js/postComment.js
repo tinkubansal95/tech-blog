@@ -6,7 +6,7 @@ $("#postComment").click(async function () {
     return;
   }
 
-  const res = await fetch("/api/comment", {
+  const res = await fetch("/api/comment/post", {
     method: "POST",
     headers: {
       Accept: "application/json",
