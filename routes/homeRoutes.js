@@ -1,6 +1,6 @@
 const router = require("express").Router();
-const { Post, User } = require("../models");
-
+const { Post, User, Comment } = require("../models");
+const sequelize = require("../config/connection");
 const withAuth = require("../utils/auth");
 var moment = require("moment");
 
@@ -30,7 +30,7 @@ router.get("/", async (req, res) => {
   try {
     const loggedIn = req.session.loggedIn;
     const allPosts = await Post.findAll({
-      attributes: ["title", "content", "publishedAt"],
+      attributes: ["id", "title", "content", "publishedAt"],
       include: {
         model: User,
         attributes: ["username"],
@@ -39,6 +39,7 @@ router.get("/", async (req, res) => {
     const posts = allPosts.map((post) => ({
       ...post.get({ plain: true }),
       publishedAt: moment.parseZone(post.publishedAt).format("D/MM/YYYY"),
+      link: `postComment/${post.id}`,
     }));
     res.render("homepage", { loggedIn, posts });
   } catch (err) {
@@ -66,6 +67,49 @@ router.get("/updatePost/:id", withAuth, async (req, res) => {
     const post = postData.get({ plain: true });
     const loggedIn = req.session.loggedIn;
     res.render("updatePost", { loggedIn, post });
+  } catch (err) {
+    console.log(err);
+    res.status(500).json(err);
+  }
+});
+
+router.get("/postComment/:id", withAuth, async (req, res) => {
+  try {
+    const loggedIn = req.session.loggedIn;
+    const postId = req.params.id;
+    const postData = await Post.findOne({
+      attributes: ["id", "title", "content", "publishedAt"],
+      include: {
+        model: User,
+        attributes: ["username"],
+      },
+      where: { id: postId },
+    });
+
+    if (!postData) {
+      res.status(404).json({ message: "No post with this id!" });
+      return;
+    }
+
+    const post = postData.get({ plain: true });
+    post.publishedAt = moment.parseZone(post.publishedAt).format("D/MM/YYYY");
+    console.log(post);
+
+    const commentsData = await sequelize.query(
+      `select c.content, 
+      c.publishedAt, u.username
+      from comment as c
+      left join user as u on c.authorId = u.id
+       where c.postId = ${postId}`,
+      { type: sequelize.QueryTypes.SELECT }
+    );
+    commentsData.forEach((value) => {
+      value.publishedAt = moment
+        .parseZone(value.publishedAt)
+        .format("D/MM/YYYY");
+    });
+
+    res.render("postComment", { loggedIn, post, commentsData });
   } catch (err) {
     console.log(err);
     res.status(500).json(err);

@@ -81,6 +81,13 @@ body {
   background-color: #eaeaea;
 }
 
+#basicContainer {
+  margin-top: 50px;
+  max-width: 750px;
+  border: 1px solid #9c9c9c;
+  background-color: #eaeaea;
+}
+
 #login .container #login-row #login-column #login-box {
   margin-top: 50px;
   max-width: 600px;

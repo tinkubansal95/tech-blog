@@ -13,26 +13,22 @@ User.hasMany(Post, {
   onDelete: "CASCADE",
 });
 
-// // user to comment
-// Comment.belongsTo(User, {
-//   foreignKey: "author_id",
-// });
+Comment.belongsTo(User, {
+  foreignKey: "authorId",
+});
 
-// // User have many Comments
-// User.hasMany(Comment, {
-//   foreignKey: "author_id",
-//   onDelete: "CASCADE",
-// });
+User.hasMany(Comment, {
+  foreignKey: "authorId",
+  onDelete: "CASCADE",
+});
 
-// // Post to comment
-// Comment.belongsTo(Post, {
-//   foreignKey: "post_id",
-// });
+Comment.belongsTo(Post, {
+  foreignKey: "postId",
+});
 
-// // User have many Comments
-// Post.hasMany(Comment, {
-//   foreignKey: "post_id",
-//   onDelete: "CASCADE",
-// });
+Post.hasMany(Comment, {
+  foreignKey: "postId",
+  onDelete: "CASCADE",
+});
 
-module.exports = { Post, User };
+module.exports = { Post, User, Comment };
