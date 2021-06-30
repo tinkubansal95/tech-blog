@@ -108,7 +108,7 @@ router.get("/postComment/:id", withAuth, async (req, res) => {
         .parseZone(value.publishedAt)
         .format("D/MM/YYYY");
     });
-
+    console.log(commentsData);
     res.render("postComment", { loggedIn, post, commentsData });
   } catch (err) {
     console.log(err);

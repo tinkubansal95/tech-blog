@@ -11,13 +11,17 @@
         </div>
         <p class="mb-1">{{post.content}}</p>
       </a>
-      <button type="button" class="btn btn-dark mt-4">Comments</button>
       <button
         type="button"
         class="btn btn-dark mt-4 float-right"
         data-toggle="modal"
         data-target="#myModal"
-      >Post Comment</button>
+      >
+        <span class="icon">
+          <i class="fas fa-edit"></i>
+        </span>
+        <span>Post Comment</span>
+      </button>
 
       <!-- Modal -->
       <div
@@ -61,7 +65,14 @@
           </div>
         </div>
       </div>
-
+      {{#if commentsData}}
+        <div class="pt-5">
+          <button
+            type="button"
+            class="btn btn-dark btn-block mt-5"
+          >Comments</button>
+        </div>
+      {{/if}}
       <div class="list-group pt-3">
         {{#each commentsData as |comment|}}
           <div class="p-2">
@@ -71,7 +82,7 @@
 
               </div>
               <small class="text-muted">Posted by
-                {{comment.user.username}}
+                {{comment.username}}
                 on
                 {{comment.publishedAt}}</small>
             </a>
