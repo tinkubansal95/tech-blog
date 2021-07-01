@@ -8,6 +8,20 @@
 
 https://techbookblog.herokuapp.com/
 
-## Screenshot of the website
+## Application Previews:
 
-![ScreenShot of the Website](https://raw.githubusercontent.com/tinkubansal95/tech-blog/main/Assets/Images/ScreenShotOFTheWebsite.png)
+![Home Page](assets\images\homePage.png)
+
+![Dashboard](assets\images\dashboard.png)
+
+![SignUp](assets\images\signUp.png)
+
+[!Login](assets\images\login.png)
+
+[!Create New Post](assets\images\createNewPost.png)
+
+[!Update and delete Post](assets\images\updateAndDeletePost.png)
+
+[!Post Comment](assets\images\PostComment.png)
+
+[!View Comments](assets\images\ViewComments.png)
