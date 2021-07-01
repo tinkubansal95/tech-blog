@@ -1,5 +1,5 @@
 const router = require("express").Router();
-const Comment = require("../../models/Comment");
+const { Post, User, Comment } = require("../../models");
 const withAuth = require("../../utils/auth");
 
 router.post("/post", withAuth, async (req, res) => {
@@ -19,6 +19,7 @@ router.post("/post", withAuth, async (req, res) => {
 
     res.status(200).json(newComment);
   } catch (e) {
+    console.log(e);
     if (e?.errors) {
       res.status(500).json(e.errors.map((err) => err.path));
       return;

@@ -1,5 +1,5 @@
 const router = require("express").Router();
-const Post = require("../../models/Post");
+const { Post, User, Comment } = require("../../models");
 const withAuth = require("../../utils/auth");
 
 router.post("/", withAuth, async (req, res) => {
@@ -73,7 +73,8 @@ router.put("/update", withAuth, async (req, res) => {
 router.delete("/delete", withAuth, async (req, res) => {
   try {
     const { id } = req.body;
-    const postData = await Post.destroy({
+
+    const postData = await Post.findOne({
       where: {
         id,
         authorId: req.session.user_id,
@@ -85,11 +86,23 @@ router.delete("/delete", withAuth, async (req, res) => {
         message:
           "No post found with this id or you don't have access to this post!",
       });
-      return;
     }
+    const commentData = await Comment.destroy({
+      where: {
+        postID: id,
+      },
+    });
 
-    res.status(200).json(postData);
+    const post = await Post.destroy({
+      where: {
+        id,
+        authorId: req.session.user_id,
+      },
+    });
+
+    res.status(200).json({ post, commentData });
   } catch (err) {
+    console.log(err);
     res.status(500).json(err);
   }
 });
