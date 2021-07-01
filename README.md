@@ -10,4 +10,4 @@ https://techbookblog.herokuapp.com/
 
 ## Screenshot of the website
 
-![ScreenShot of the Website](Assets/images/ScreenShotOFTheWebsite.png)
+![ScreenShot of the Website](Assets\Images\ScreenShotOFTheWebsite.png)
