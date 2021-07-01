@@ -14,11 +14,11 @@
 - [License](#license)
 - [Got Any Questions](#got-any-questions)
 
-## Link of the website :
+## Link of the website:
 
 https://techbookblog.herokuapp.com/
 
-## Technologies Used :
+## Technologies Used:
 
 - JavaScript
 - Node.js
