@@ -21,6 +21,7 @@ https://techbookblog.herokuapp.com/
 ## Technologies Used:
 
 - JavaScript
+- JQuery
 - Node.js
 - Express.js
 - npm
