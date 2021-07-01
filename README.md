@@ -16,12 +16,12 @@ https://techbookblog.herokuapp.com/
 
 ![SignUp](assets\images\signUp.png)
 
-[!Login](assets\images\login.png)
+![Login](assets\images\login.png)
 
-[!Create New Post](assets\images\createNewPost.png)
+![Create New Post](assets\images\createNewPost.png)
 
-[!Update and delete Post](assets\images\updateAndDeletePost.png)
+![Update and delete Post](assets\images\updateAndDeletePost.png)
 
-[!Post Comment](assets\images\PostComment.png)
+![Post Comment](assets\images\PostComment.png)
 
-[!View Comments](assets\images\ViewComments.png)
+![View Comments](assets\images\ViewComments.png)
