@@ -1,6 +1,6 @@
 $("#postComment").click(async function () {
   const content = $("#content").val().trim();
-  const postId = window.location.href.substring(34);
+  const postId = window.location.href.substring(47);
   if (!content) {
     window.location.reload();
     return;
