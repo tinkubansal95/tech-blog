@@ -23,9 +23,9 @@ https://techbookblog.herokuapp.com/
 
 This application has the following features:
 
-- Application's homepage includes existing blog posts,that include the post title, description, author's name and the date created. Homepage also includes navigation links for the homepage and the dashboard; and the option to log in
+- Application's homepage includes existing blog posts, that include the post title, description, author's name and the date created. Homepage also includes navigation links for the homepage and the dashboard; and the option to log in
 - User can sign up or sign in
-- Logged In user can logout
+- Logged In user have option to logout
 - User can post comment on existing post by clicking on an existing blog post.
 - User can view details of post and its related comments by clicking on the post on Homepage.
 - User's dashboard includes any blog posts created by user and the option to add a new blog post
